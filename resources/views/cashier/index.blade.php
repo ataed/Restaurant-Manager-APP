@@ -51,8 +51,6 @@ $(document).ready(function() {
     });
 
     //Load menus by category 
-    //Load menus by category 
-    //Load menus by category 
     $(".nav-link").click(function() {
         $.get("/cashier/getMenuByCategory/" + $(this).data("id"), function(data) {
             $("#list-menu").hide();
