@@ -26,6 +26,8 @@ Route::get('/management',function(){
     return view('management.index');
 });
 
-Route::resource('management/category','Management\CategoryController');
+Route::resource('/management/category','Management\CategoryController');
 
-Route::resource('management/menu','Management\MenuController');
+Route::resource('/management/menu','Management\MenuController');
+
+Route::resource('/management/table','Management\TableController');
