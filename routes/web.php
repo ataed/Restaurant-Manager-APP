@@ -40,7 +40,13 @@ Route::get('/cashier/getSaleDetailByTable/{table_id}','Cashier\CashierController
 Route::post('/cashier/orderFood','Cashier\CashierController@orderFood');
 Route::post('/cashier/confirmOrderStatus','Cashier\CashierController@confirmOrderStatus'); 
 
-Route::post('/cashier/deleteSaleDetail','Cashier\CashierController@deleteSaleDetail'); 
+Route::post('/cashier/deleteSaleDetail','Cashier\CashierController@deleteSaleDetail');
+
+Route::post('/cashier/savePayment','Cashier\CashierController@savePayment');
+
+
+
+
 
 
 

@@ -112,7 +112,7 @@ $(document).ready(function () {
         SALE_ID = $(this).data("id");
     });
 
-    // calcuate change
+    // calcul change
     $("#recieved-amount").keyup(function () {
         let totalAmount = $(".btn-payment").attr("data-totalAmount");
         let recievedAmount = $(this).val();
@@ -126,5 +126,26 @@ $(document).ready(function () {
         } else {
             $(".btn-save-payment").prop("disabled", true);
         }
+    });
+
+    //Save Payment (Update sale_status)
+    $(".btn-save-payment").click(function () {
+        let recievedAmount = $("#recieved-amount").val();
+        let paymentType = $("#payment-type").val();
+        let saleID = SALE_ID;
+        $.ajax({
+            type: "POST",
+            data: {
+                _token: $('meta[name="csrf-token"]').attr("content"),
+                saleID,
+                recievedAmount,
+                paymentType,
+            },
+            url: "/cashier/savePayment",
+
+            success: function (data) {
+                window.location.href = data;
+            },
+        });
     });
 });
