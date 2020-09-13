@@ -102,4 +102,29 @@ $(document).ready(function () {
             },
         });
     });
+
+    //When user click payment button
+    $("#order-detail").on("click", ".btn-payment", function () {
+        let totalAmount = $(this).attr("data-totalAmount");
+        $(".totalAmount").html("Total Amount " + totalAmount);
+        $("#recieved-amount").val("");
+        $(".changeAmount").html("");
+        SALE_ID = $(this).data("id");
+    });
+
+    // calcuate change
+    $("#recieved-amount").keyup(function () {
+        let totalAmount = $(".btn-payment").attr("data-totalAmount");
+        let recievedAmount = $(this).val();
+        let changeAmount = recievedAmount - totalAmount;
+        $(".changeAmount").html("Total Change: $" + changeAmount);
+
+        //check if cashier enter the right amount, then enable or disable save payment button
+
+        if (changeAmount >= 0) {
+            $(".btn-save-payment").prop("disabled", false);
+        } else {
+            $(".btn-save-payment").prop("disabled", true);
+        }
+    });
 });

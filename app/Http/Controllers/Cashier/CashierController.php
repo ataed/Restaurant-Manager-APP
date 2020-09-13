@@ -195,6 +195,8 @@ class CashierController extends Controller
             }
             return $html;
         }
+
+
     
        
 }
