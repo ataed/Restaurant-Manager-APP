@@ -43,6 +43,7 @@ Route::post('/cashier/confirmOrderStatus','Cashier\CashierController@confirmOrde
 Route::post('/cashier/deleteSaleDetail','Cashier\CashierController@deleteSaleDetail');
 
 Route::post('/cashier/savePayment','Cashier\CashierController@savePayment');
+Route::get('/cashier/showReceipt/{saleID}', 'Cashier\CashierController@showReceipt');
 
 
 
