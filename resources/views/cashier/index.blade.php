@@ -66,7 +66,9 @@ $(document).ready(function() {
         SELECTED_TABLE_ID = $(this).data("id");
         SELECTED_TABLE_NAME = $(this).data("name");
         $("#selected-table").html('<br><h3>Table: ' + SELECTED_TABLE_NAME + '</h3><hr>');
-
+        $.get('/cashier/getSaleDetailByTable/' + SELECTED_TABLE_ID, function(data) {
+            $("#order-detail").html(data);
+        })
     });
 
     $("#list-menu").on("click", ".btn-menu", function() {
