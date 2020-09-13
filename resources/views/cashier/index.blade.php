@@ -109,6 +109,23 @@ $(document).ready(function() {
         });
     });
 
+    //Delete SaleDetail
+    $("#order-detail").on("click", ".btn-delete-saledetail", function() {
+        let saleDetailID = $(this).data("id");
+        $.ajax({
+            type: "POST",
+            data: {
+                "_token": $('meta[name="csrf-token"]').attr('content'),
+                "saleDetail_id": saleDetailID
+            },
+            url: "/cashier/deleteSaleDetail",
+            success: function(data) {
+                $("#order-detail").html(data);
+            }
+        })
+
+    });
+
 
 
 });

@@ -175,6 +175,26 @@ class CashierController extends Controller
             $saleDetails = SaleDetail::where('sale_id', $sale_id)->update(['status'=>'Confirmed']);
             return  $this->getSaleDetails($sale_id);
         }
+
+        public function deleteSaleDetail(Request $request){
+            $saleDetail_id = $request->saleDetail_id;
+            $saleDetail = SaleDetail::find($saleDetail_id);
+            $sale_id = $saleDetail->sale_id;
+            $menu_price = ($saleDetail->menu_price * $saleDetail->quantity);
+            $saleDetail->delete();
+            //update total price
+            $sale = Sale::find($sale_id);
+            $sale->total_price = $sale->total_price - $menu_price;
+            $sale->save();
+            //we check if there a saledetail has the same sale id
+            $saleDetails = SaleDetail::where('sale_id', $sale_id)->first();
+            if($saleDetail){
+                $html = $this->getSaleDetails($sale_id);
+            }else{
+                $html = "No Sale Details For The Selected Table";
+            }
+            return $html;
+        }
     
        
 }
