@@ -8,6 +8,6 @@ class Sale extends Model
 {
     //1:Many relationship
     public function saleDetails(){
-        return $this->hasMany(saleDetail::class);
+        return $this->hasMany(SaleDetail::class);
     }
 }

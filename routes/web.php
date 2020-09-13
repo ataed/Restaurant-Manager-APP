@@ -49,6 +49,8 @@ Route::get('/cashier/showReceipt/{saleID}', 'Cashier\CashierController@showRecei
 //REPORT ROUTES
 
 Route::get('/report','Report\ReportController@index');
+Route::get('/report/show', 'Report\ReportController@show');
+
 
 
 
