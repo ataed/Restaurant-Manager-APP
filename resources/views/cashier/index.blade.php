@@ -75,7 +75,7 @@ $(document).ready(function() {
         if (SELECTED_TABLE_ID == "") {
             alert("You need to select a table for the customer first");
         } else {
-            var menu_id = $(this).data("id");
+            let menu_id = $(this).data("id");
             $.ajax({
                 type: "POST",
                 data: {
@@ -91,6 +91,22 @@ $(document).ready(function() {
                 }
             });
         }
+    });
+
+    //Confirm Order
+    $("#order-detail").on('click', ".btn-confirm-order", function() {
+        let saleID = $(this).data("id");
+        $.ajax({
+            type: "POST",
+            data: {
+                "_token": $('meta[name="csrf-token"]').attr('content'),
+                "sale_id": saleID
+            },
+            url: "/cashier/confirmOrderStatus",
+            success: function(data) {
+                $("#order-detail").html(data);
+            }
+        });
     });
 
 

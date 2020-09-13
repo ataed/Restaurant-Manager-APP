@@ -169,6 +169,12 @@ class CashierController extends Controller
             return $html;
             
         }    
+
+        public function confirmOrderStatus(Request $request){
+            $sale_id = $request->sale_id;
+            $saleDetails = SaleDetail::where('sale_id', $sale_id)->update(['status'=>'Confirmed']);
+            return  $this->getSaleDetails($sale_id);
+        }
     
        
 }
