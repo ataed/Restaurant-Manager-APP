@@ -26,6 +26,15 @@ Route::get('/management',function(){
     return view('management.index');
 });
 
+Route::get('/cashier','Cashier\CashierController@index');
+Route::get('/cashier/getTables','Cashier\CashierController@getTables');
+// Route::get('/cashier/getMenuByCategory/{category_id}','Cashier\CashierController@getMenuByCategory');
+Route::get('/cashier/getMenuByCategory/{category_id}', 'Cashier\CashierController@getMenuByCategory');
+
+
+
+
+
 Route::resource('/management/category','Management\CategoryController');
 
 Route::resource('/management/menu','Management\MenuController');
