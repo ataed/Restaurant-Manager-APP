@@ -22,20 +22,27 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
+// MANAGEMENT ROUTES
+
 Route::get('/management',function(){
     return view('management.index');
 });
+
+
+
+// CASHIER ROUTES
 
 Route::get('/cashier','Cashier\CashierController@index');
 Route::get('/cashier/getTables','Cashier\CashierController@getTables');
 Route::get('/cashier/getMenuByCategory/{category_id}', 'Cashier\CashierController@getMenuByCategory');
 
-
+Route::post('/cashier/orderFood','Cashier\CashierController@orderFood');
 
 
 
 Route::resource('/management/category','Management\CategoryController');
 
-Route::resource('/management/menu','Management\MenuController');
-
 Route::resource('/management/table','Management\TableController');
+
+
+Route::resource('/management/menu','Management\MenuController');
