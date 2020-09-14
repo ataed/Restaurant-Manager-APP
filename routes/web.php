@@ -22,13 +22,33 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-// MANAGEMENT ROUTES
 
-Route::get('/management',function(){
-    return view('management.index');
+
+
+
+//ALLOW ACCESS ONLY FOR ADMIN
+Route::middleware(['auth','VerifyAdmin'])->group(function(){
+    // MANAGEMENT ROUTES
+
+    Route::get('/management',function(){
+        return view('management.index');
+    });
+    Route::resource('/management/category','Management\CategoryController');
+    Route::resource('/management/table','Management\TableController');
+    Route::resource('/management/menu','Management\MenuController');
+
+    //REPORT ROUTES
+
+Route::get('/report','Report\ReportController@index');
+Route::get('/report/show', 'Report\ReportController@show');
+
 });
 
 
+
+
+//ALOW ACCESS ONLY FOR LOGGED IN USERS
+Route::middleware(['auth'])->group(function(){
 
 // CASHIER ROUTES
 
@@ -44,23 +64,4 @@ Route::post('/cashier/deleteSaleDetail','Cashier\CashierController@deleteSaleDet
 
 Route::post('/cashier/savePayment','Cashier\CashierController@savePayment');
 Route::get('/cashier/showReceipt/{saleID}', 'Cashier\CashierController@showReceipt');
-
-
-//REPORT ROUTES
-
-Route::get('/report','Report\ReportController@index');
-Route::get('/report/show', 'Report\ReportController@show');
-
-
-
-
-
-
-
-
-Route::resource('/management/category','Management\CategoryController');
-
-Route::resource('/management/table','Management\TableController');
-
-
-Route::resource('/management/menu','Management\MenuController');
+});
