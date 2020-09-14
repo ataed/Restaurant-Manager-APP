@@ -33,8 +33,10 @@ Route::middleware(['auth','VerifyAdmin'])->group(function(){
     Route::get('/management',function(){
         return view('management.index');
     });
+    //MANAGEMENT RESOURCE
     Route::resource('/management/category','Management\CategoryController');
     Route::resource('/management/table','Management\TableController');
+    Route::resource('management/user','Management\UserController');
     Route::resource('/management/menu','Management\MenuController');
 
     //REPORT ROUTES
